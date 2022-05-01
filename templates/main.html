@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <style>
+            form {
+                margin: auto;
+                width: 35%;
+            }
+            
+            .result {
+                margin: auto;
+                width: 35%;
+                border: 1px solid #ccc;
+            }
+            </style>
+
+        <title>
+            Softball Sign Predictor
+        </title>
+    </head>
+
+    <body>
+        <h1>Softball Sign Predictor</h1>
+        <p>Valid sequence letters: a, e, d, f, g, j</p>
+        <form action="{{ url_for('main') }}" method="POST">
+            <fieldset>
+                <legend>Input values:</legend>
+                Sequence:
+                <input name="sequence" type="text" required>
+                <br>
+                <br>
+                <input type="submit">
+            </fieldset>
+        </form>
+        <br>
+        <div class="result" align="center">
+            {% if result %}
+    	        {% for variable, value in original_input.items() %}
+    		            <b>{{ variable }}</b> : {{ value }}
+    	        {% endfor %}
+		                <br>
+    	        <br> Predicted class (1 is steal, 0 is no steal):
+   		                <p style="font-size:50px">{{ result }}</p>
+            {% endif %}
+        </div>
+    </body>
+</html>
